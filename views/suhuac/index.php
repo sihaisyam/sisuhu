@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col col-sm-9">SUHU AC</div>
                     <div class="col col-sm-3">
-                        <a href="#" class="btn btn-primary btn-sm float-end" id="generate">Generate Simulasi</a>
+                        <a href="#" class="btn btn-primary btn-sm float-end" id="generate">Generate</a>
                         <a href="#" class="btn btn-success btn-sm float-end" id="add_data">Add</a>
                     </div>
                 </div>
@@ -106,11 +106,12 @@
         <div class="modal" tabindex="-1" id="generate_modal">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="dynamic_modal_title_generate"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+                    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="dynamic_modal_title_generate"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
                         <p>PT ABC melakukan percobaan terhadap responden sebanyak <b id="total"></b>
                         Kemudian, dari hasil pemodelan logika fuzzy dapat di simpulkan sebagai berikut :
                             <ul>
@@ -119,10 +120,12 @@
                                 <li id='tertinggi'></li>
                             </ul>
                         </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                        
                 </div>
             </div>
         </div>
@@ -152,15 +155,14 @@
                 url:
                 "http://localhost/sisuhu/api/suhuac/generate-by-avg.php",
                 success: function(response) {
-                    $('#terendah').append(response.terendah);
                     $('#ternyaman').append(response.ternyaman);
+                    $('#terendah').append(response.terendah);
                     $('#tertinggi').append(response.tertinggi);
                 },
                 error: function(err) {
                     console.log(err);
                 }
             });
-          
         });
         
         $('#sample_form').on('submit', function(event){
@@ -221,8 +223,7 @@
             url:"http://localhost/sisuhu/api/suhuac/read.php",
             success: function(response) {
             // console.log(response);
-            
-                $('#total').html('')
+                $('#total').html('');
                 var json = response.body;
                 var dataSet=[];
                 for (var i = 0; i < json.length; i++) {
